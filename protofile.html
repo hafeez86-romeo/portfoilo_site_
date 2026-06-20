@@ -1,0 +1,546 @@
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio |</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+    --bg:#0f172a;
+    --card:#1e293b;
+    --text:#f8fafc;
+    --secondary:#94a3b8;
+    --primary:#6366f1;
+    --accent:#8b5cf6;
+}
+
+.light{
+    --bg:#f8fafc;
+    --card:#ffffff;
+    --text:#0f172a;
+    --secondary:#475569;
+    --primary:#4f46e5;
+    --accent:#7c3aed;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:'Poppins',sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    transition:.3s;
+}
+
+.container{
+    width:90%;
+    max-width:1200px;
+    margin:auto;
+}
+
+header{
+    position:fixed;
+    top:0;
+    width:100%;
+    z-index:1000;
+    backdrop-filter:blur(12px);
+    background:rgba(15,23,42,.8);
+}
+
+.light header{
+    background:rgba(255,255,255,.8);
+}
+
+nav{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px 0;
+}
+
+.logo{
+    font-size:1.5rem;
+    font-weight:700;
+    color:var(--primary);
+}
+
+.nav-links{
+    display:flex;
+    gap:30px;
+}
+
+.nav-links a{
+    color:var(--text);
+    text-decoration:none;
+    transition:.3s;
+}
+
+.nav-links a:hover{
+    color:var(--primary);
+}
+
+.menu-btn{
+    display:none;
+    font-size:1.5rem;
+    cursor:pointer;
+}
+
+.theme-btn{
+    background:var(--primary);
+    color:white;
+    border:none;
+    padding:10px 15px;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+.hero{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+}
+
+.hero-content{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:50px;
+    align-items:center;
+}
+
+.hero-text h1{
+    font-size:4rem;
+    line-height:1.2;
+}
+
+.hero-text h1 span{
+    color:var(--primary);
+}
+
+.hero-text p{
+    color:var(--secondary);
+    margin:20px 0;
+    font-size:1.1rem;
+}
+
+.buttons{
+    display:flex;
+    gap:15px;
+}
+
+.btn{
+    padding:14px 28px;
+    border:none;
+    border-radius:10px;
+    text-decoration:none;
+    display:inline-block;
+    font-weight:600;
+}
+
+.btn-primary{
+    background:var(--primary);
+    color:white;
+}
+
+.btn-outline{
+    border:2px solid var(--primary);
+    color:var(--primary);
+}
+
+.hero-image{
+    display:flex;
+    justify-content:center;
+}
+
+.profile{
+    width:320px;
+    height:320px;
+    border-radius:50%;
+    background:linear-gradient(135deg,var(--primary),var(--accent));
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:6rem;
+    font-weight:bold;
+}
+
+section{
+    padding:100px 0;
+}
+
+.section-title{
+    text-align:center;
+    font-size:2.5rem;
+    margin-bottom:50px;
+}
+
+.about{
+    text-align:center;
+}
+
+.about p{
+    max-width:800px;
+    margin:auto;
+    color:var(--secondary);
+    line-height:1.8;
+}
+
+.skills-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+    gap:20px;
+}
+
+.skill-card{
+    background:var(--card);
+    padding:25px;
+    border-radius:15px;
+    text-align:center;
+    transition:.3s;
+}
+
+.skill-card:hover{
+    transform:translateY(-10px);
+}
+
+.projects-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+    gap:25px;
+}
+
+.project-card{
+    background:var(--card);
+    border-radius:15px;
+    overflow:hidden;
+    transition:.3s;
+}
+
+.project-card:hover{
+    transform:translateY(-8px);
+}
+
+.project-img{
+    height:220px;
+    background:linear-gradient(135deg,var(--primary),var(--accent));
+}
+
+.project-content{
+    padding:20px;
+}
+
+.project-content p{
+    color:var(--secondary);
+    margin:10px 0;
+}
+
+.project-links{
+    display:flex;
+    gap:10px;
+}
+
+.contact{
+    text-align:center;
+}
+
+.contact p{
+    color:var(--secondary);
+    margin-bottom:30px;
+}
+
+.contact-links{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:15px;
+}
+
+.contact-links a{
+    background:var(--primary);
+    color:white;
+    padding:12px 20px;
+    border-radius:10px;
+    text-decoration:none;
+}
+
+footer{
+    text-align:center;
+    padding:30px;
+    color:var(--secondary);
+}
+
+.fade{
+    opacity:0;
+    transform:translateY(30px);
+    transition:1s;
+}
+
+.fade.show{
+    opacity:1;
+    transform:translateY(0);
+}
+
+@media(max-width:768px){
+
+.hero-content{
+    grid-template-columns:1fr;
+    text-align:center;
+}
+
+.hero-text h1{
+    font-size:2.8rem;
+}
+
+.profile{
+    width:250px;
+    height:250px;
+}
+
+.nav-links{
+    display:none;
+    position:absolute;
+    top:80px;
+    left:0;
+    width:100%;
+    background:var(--card);
+    flex-direction:column;
+    padding:20px;
+}
+
+.nav-links.active{
+    display:flex;
+}
+
+.menu-btn{
+    display:block;
+}
+}
+</style>
+</head>
+<body>
+
+<header>
+<div class="container">
+<nav>
+<div class="logo">Portfolio</div>
+
+<div class="nav-links" id="navLinks">
+<a href="#home">Home</a>
+<a href="#about">About</a>
+<a href="#skills">Skills</a>
+<a href="#projects">Projects</a>
+<a href="#contact">Contact</a>
+</div>
+
+<div style="display:flex;gap:10px;align-items:center;">
+<button class="theme-btn" id="themeBtn">🌙</button>
+<div class="menu-btn" id="menuBtn">☰</div>
+</div>
+</nav>
+</div>
+</header>
+
+<section class="hero" id="home">
+<div class="container">
+<div class="hero-content">
+
+<div class="hero-text fade">
+<h1>Hello, I'm <span>AYINAVOLU NIKITHA</span></h1>
+<h3>Frontend Developer</h3>
+
+<p>
+I build beautiful, responsive, and modern web experiences using
+HTML, CSS, JavaScript, and React.
+</p>
+
+<div class="buttons">
+<a href="#projects" class="btn btn-primary">View Projects</a>
+<a href="resume.pdf" class="btn btn-outline">Download Resume</a>
+</div>
+</div>
+
+<div class="hero-image fade">
+<div class="profile">AN</div>
+</div>
+
+</div>
+</div>
+</section>
+
+<section id="about">
+<div class="container">
+<h2 class="section-title fade">About Me</h2>
+
+<div class="about fade">
+<p>
+I'm a passionate frontend developer focused on creating responsive,
+accessible, and high-performance websites. I enjoy transforming ideas
+into elegant digital products and continuously learning new
+technologies to improve my craft.
+</p>
+</div>
+</div>
+</section>
+
+<section id="skills">
+<div class="container">
+
+<h2 class="section-title fade">Skills</h2>
+
+<div class="skills-grid">
+
+<div class="skill-card fade">
+<h3>HTML5</h3>
+<p>Semantic & Accessible Markup</p>
+</div>
+
+<div class="skill-card fade">
+<h3>CSS3</h3>
+<p>Responsive & Modern UI</p>
+</div>
+
+<div class="skill-card fade">
+<h3>JavaScript</h3>
+<p>Interactive Experiences</p>
+</div>
+
+<div class="skill-card fade">
+<h3>React</h3>
+<p>SPA Development</p>
+</div>
+
+<div class="skill-card fade">
+<h3>Git</h3>
+<p>Version Control</p>
+</div>
+
+<div class="skill-card fade">
+<h3>UI/UX</h3>
+<p>User-Centered Design</p>
+</div>
+
+</div>
+</div>
+</section>
+
+<section id="projects">
+<div class="container">
+
+<h2 class="section-title fade">Projects</h2>
+
+<div class="projects-grid">
+
+<div class="project-card fade">
+<div class="project-img"></div>
+<div class="project-content">
+<h3>E-Commerce Website</h3>
+<p>
+Responsive online store with product filtering and shopping cart.
+</p>
+<div class="project-links">
+<a href="#" class="btn btn-primary">Live Demo</a>
+<a href="#" class="btn btn-outline">GitHub</a>
+</div>
+</div>
+</div>
+
+<div class="project-card fade">
+<div class="project-img"></div>
+<div class="project-content">
+<h3>Weather App</h3>
+<p>
+Real-time weather dashboard using external APIs.
+</p>
+<div class="project-links">
+<a href="#" class="btn btn-primary">Live Demo</a>
+<a href="#" class="btn btn-outline">GitHub</a>
+</div>
+</div>
+</div>
+
+<div class="project-card fade">
+<div class="project-img"></div>
+<div class="project-content">
+<h3>Task Manager</h3>
+<p>
+Interactive productivity application with local storage.
+</p>
+<div class="project-links">
+<a href="#" class="btn btn-primary">Live Demo</a>
+<a href="#" class="btn btn-outline">GitHub</a>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+</section>
+
+<section id="contact">
+<div class="container">
+
+<h2 class="section-title fade">Contact Me</h2>
+
+<div class="contact fade">
+<p>
+Interested in working together? Feel free to reach out.
+</p>
+
+<div class="contact-links">
+<a href="mailto:yourmail@example.com">Email</a>
+<a href="#">LinkedIn</a>
+<a href="#">GitHub</a>
+<a href="#">Twitter</a>
+</div>
+
+</div>
+
+</div>
+</section>
+
+<footer>
+© 2026 Your Name. All Rights Reserved.
+</footer>
+
+<script>
+const themeBtn = document.getElementById("themeBtn");
+
+themeBtn.addEventListener("click", () => {
+    document.body.classList.toggle("light");
+
+    themeBtn.textContent =
+        document.body.classList.contains("light")
+        ? "☀️"
+        : "🌙";
+});
+
+const menuBtn = document.getElementById("menuBtn");
+const navLinks = document.getElementById("navLinks");
+
+menuBtn.addEventListener("click", () => {
+    navLinks.classList.toggle("active");
+});
+
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if(entry.isIntersecting){
+            entry.target.classList.add("show");
+        }
+    });
+},{
+    threshold:0.2
+});
+
+document.querySelectorAll(".fade").forEach(el => {
+    observer.observe(el);
+});
+</script>
+
+</body>
+</html>
